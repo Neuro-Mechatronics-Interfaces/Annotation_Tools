@@ -2,6 +2,8 @@
 
 This repository contains MATLAB tools for annotating transverse MRI sections (such as those of the right forearm). The primary tool in this repository is the `annotateSlices.m` function, which provides an interactive interface for manually annotating MRI slices.
 
+![(animation demonstrating simple usage)](Example-Use.gif)
+
 ## Features
 
 - **Interactive Annotation**: Click on a specific location in the MRI image to annotate it with the corresponding channel number.
