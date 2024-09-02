@@ -256,6 +256,9 @@ set(imageHandle, 'ButtonDownFcn', @onImageClick);
                 for iPt = 1:numel(arcState.h)
                     set(arcState.h(iPt),'XData',nan,'YData',nan);
                 end
+                channelSpinner.Value = mod(channel + options.NumChannelsPerArc - 1, options.NumChannels) + 1;
+                sliceIndex = mod(sliceIndex, numel(imageFiles)) + 1;
+                refreshMainDisplay();
             end
         else
             arcState.clickCount = 0;
@@ -370,10 +373,7 @@ set(imageHandle, 'ButtonDownFcn', @onImageClick);
             progBar.CData(channel) = channel;
         end
         lastModified = startChannel:(startChannel+options.NumChannelsPerArc-1);
-        channelSpinner.Value = mod(startChannel + options.NumChannelsPerArc, options.NumChannels) + 1;
         drawnow();
-        pause(0.25);
-        sliceIndex = mod(sliceIndex, numel(imageFiles)) + 1;
     end
 
     function refreshMainDisplay()
