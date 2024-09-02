@@ -309,9 +309,9 @@ set(imageHandle, 'ButtonDownFcn', @onImageClick);
                 fig.Pointer = 'crosshair';
                 return;
             case {'uparrow','w'}
-                sliceIndex = min(sliceIndex + 1, numel(imageFiles));
+                sliceIndex = mod(sliceIndex, numel(imageFiles)) + 1;
             case {'downarrow','s'}
-                sliceIndex = max(sliceIndex - 1, 1);
+                sliceIndex = mod(sliceIndex - 2, numel(imageFiles)) + 1;
             case {'rightarrow', 'd'}
                 channelSpinner.Value = mod(channelSpinner.Value,options.NumChannels)+1;
             case {'leftarrow','a'}
@@ -368,6 +368,10 @@ set(imageHandle, 'ButtonDownFcn', @onImageClick);
             progBar.CData(channel) = channel;
         end
         lastModified = startChannel:(startChannel+options.NumChannelsPerArc-1);
+        channelSpinner.value = mod(startChannel + options.NumChannelsPerArc, options.NumChannels) + 1;
+        drawnow();
+        pause(0.25);
+        sliceIndex = mod(sliceIndex, numel(imageFiles)) + 1;
     end
 
     function refreshMainDisplay()
