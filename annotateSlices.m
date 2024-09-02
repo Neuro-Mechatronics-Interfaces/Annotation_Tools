@@ -111,7 +111,9 @@ grid.ColumnWidth = {'1x', 150};
 ax = uiaxes(grid, ...
     'NextPlot', 'add', ...
     'XColor','none',...
-    'YColor','none');
+    'YColor','none', ...
+    'YDir','reverse', ...
+    'XDir','normal');
 ax.Layout.Row = [2 6];
 ax.Layout.Column = [1 4];
 
@@ -368,7 +370,7 @@ set(imageHandle, 'ButtonDownFcn', @onImageClick);
             progBar.CData(channel) = channel;
         end
         lastModified = startChannel:(startChannel+options.NumChannelsPerArc-1);
-        channelSpinner.value = mod(startChannel + options.NumChannelsPerArc, options.NumChannels) + 1;
+        channelSpinner.Value = mod(startChannel + options.NumChannelsPerArc, options.NumChannels) + 1;
         drawnow();
         pause(0.25);
         sliceIndex = mod(sliceIndex, numel(imageFiles)) + 1;
