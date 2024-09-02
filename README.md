@@ -50,5 +50,6 @@ This repository contains MATLAB tools for annotating transverse MRI sections (su
   2. Second click sets the end of the channel set.  
   3. Final click sets the control point dictating how the curve will bend.  
 * The interface stores `UNDO` information for exactly one `UNDO` operation. To reset to the previous state, you can hold `CTRL` while pressing `z`.  
+* If you want to remove a channel but you are not sure which slice it is on or something, set this channel as your current channel then press the `delete` button on the keyboard. _Note that this will cause `UNDO` to recall the position of this point as the last `UNDO` operation._
 
 When you are done adding all channels, the progress bar at the top should be fully colored (indicating that all channels have been placed). Click the `Save` button (bottom-right) and specify the name and location where you want to save the output annotations table. 

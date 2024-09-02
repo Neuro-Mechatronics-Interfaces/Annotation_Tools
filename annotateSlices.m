@@ -284,9 +284,20 @@ set(imageHandle, 'ButtonDownFcn', @onImageClick);
     end
 
     function handleWindowKeyRelease(~, event)
+        % disp(event);
         switch event.Key
             case 'shift'
                 fig.Pointer = 'arrow';
+            case 'delete'
+                channel = channelSpinner.Value;
+                if annotationTable.Slice(channel) > 0
+                    lastModified = channel;
+                    lastX = annotationTable.X(channel);
+                    lastY = annotationTable.Y(channel);
+                    lastSlice = annotationTable.Slice(channel);
+                end
+                annotationTable(channel,:) = {channel, chMap(channel), 0, 0, 0};
+                refreshMainDisplay();
         end
     end
 
